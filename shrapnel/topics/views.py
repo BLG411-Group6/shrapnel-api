@@ -27,3 +27,11 @@ class TopicEntriesView(TopicResourceMixin, ListCreateAPIView):
 
     def get_queryset(self):
         return filter_queryset_by_keywords(request=self.request, queryset=Entry.objects.filter(is_deleted=False), field="content")
+
+
+class EntryDetailView(RetrieveUpdateDestroyAPIView):
+    permission_classes = []  # TODO: configure permissions.
+    serializer_class = EntrySerializer
+    queryset = Entry.objects.filter(is_deleted=False)
+    lookup_url_kwarg = 'entry_id'
+    lookup_field = 'id'
