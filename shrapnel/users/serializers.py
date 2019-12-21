@@ -11,7 +11,7 @@ class LoginSerializer(serializers.Serializer):
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(required=True, write_only=True)
-    repeated_password = serializers.CharField(write_only=True, required=False)
+    repeated_password = serializers.CharField(required=True, write_only=True)
 
     class Meta:
         model = User
