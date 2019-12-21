@@ -17,7 +17,7 @@ def create_test_user(data=None):
     data.setdefault('username', username)
     data.setdefault('first_name', first_name)
     data.setdefault('last_name', last_name)
-    data.setdefault('email', f'baranugur7+{username}@gmail.com')
+    data.setdefault('email', f'test-user+{username}@shrapnel.com')
     data.setdefault('password', password)
 
     return User.objects.create_user(**data)
