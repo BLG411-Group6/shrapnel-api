@@ -9,6 +9,10 @@ class Poll(models.Model):
     date_created = models.DateTimeField(default=timezone.now)
     date_expiration = models.DateTimeField()
 
+    class Meta:
+        verbose_name = "Poll"
+        verbose_name_plural = "Polls"
+
     def __str__(self):
         return f"Poll: {self.title}"
 
@@ -18,6 +22,10 @@ class PollOption(models.Model):
     poll = models.ForeignKey("polls.Poll", related_name="options", on_delete=models.CASCADE)
 
     date_created = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        verbose_name = "PollOption"
+        verbose_name_plural = "PollOptions"
 
     def __str__(self):
         return f"PollOption: \"{self.body}\", Poll: \"{self.poll.title}\""
@@ -32,6 +40,8 @@ class PollAnswer(models.Model):
     date_updated = models.DateTimeField(auto_now=True)
 
     class Meta:
+        verbose_name = "PollAnswer"
+        verbose_name_plural = "PollAnswers"
         unique_together = ("user", "poll")
 
     def __str__(self):

@@ -16,5 +16,9 @@ class DirectMessage(models.Model):
 
     date_created = models.DateTimeField(default=timezone.now)
 
+    class Meta:
+        verbose_name = "DirectMessage"
+        verbose_name_plural = "DirectMessages"
+
     def __str__(self):
         return f"Direct Message: from {self.sender.username} to {self.receiver.username}"
