@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'shrapnel.polls',
 
     # 3rd party modules
+    'rest_framework',
     'django_extensions',
 ]
 
