@@ -13,12 +13,16 @@ class EntrySerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "content",
-            "topic",
             "user",
             "date_created",
             "date_updated"
         ]
         read_only_fields = ["date_created", "date_updated"]
+
+    def create(self, validated_data):
+        # TODO: Set user to request.user while creating and make user field read only.ss
+        validated_data["topic"] = self.context["topic"]
+        return super(EntrySerializer, self).create(validated_data)
 
 
 class TopicSerializer(serializers.ModelSerializer):
@@ -31,7 +35,7 @@ class TopicSerializer(serializers.ModelSerializer):
             "id",
             "title",
             "user",
-            "entries"
+            "entries",
             "date_created",
             "date_updated",
         ]
