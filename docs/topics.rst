@@ -248,7 +248,13 @@ Example Response::
             "id": 1,
             "content": "entry_content1",
             "user": 1, /* This will return user information in the future. */
-            /* We should add topic information here in the future */
+            "topic": {
+                "id": 1,
+                "title": "topic_title1",
+                "user": 1,
+                "date_created": "2019-12-21T19:09:27.878108+03:00",
+                "date_updated": "2019-12-21T19:09:27.880234+03:00"
+            },
             "date_created": "2019-12-21T22:29:17.561338+03:00",
             "date_updated": "2019-12-21T22:29:17.562295+03:00"
         },
@@ -256,7 +262,13 @@ Example Response::
             "id": 2,
             "content": "entry_content2",
             "user": 2, /* This will return user information in the future. */
-            /* We should add topic information here in the future */
+            "topic": {
+                "id": 2,
+                "title": "topic_title2",
+                "user": 2,
+                "date_created": "2019-12-21T19:09:27.878108+03:00",
+                "date_updated": "2019-12-21T19:09:27.880234+03:00"
+            },
             "date_created": "2019-12-21T22:30:52.638672+03:00",
             "date_updated": "2019-12-21T23:15:07.427046+03:00"
         },
@@ -264,7 +276,13 @@ Example Response::
             "id": 3,
             "content": "entry_content3",
             "user": 3, /* This will return user information in the future. */
-            /* We should add topic information here in the future */
+            "topic": {
+                "id": 3,
+                "title": "topic_title3",
+                "user": 3,
+                "date_created": "2019-12-21T19:09:27.878108+03:00",
+                "date_updated": "2019-12-21T19:09:27.880234+03:00"
+            },
             "date_created": "2019-12-21T23:40:00.202038+03:00",
             "date_updated": "2019-12-21T23:40:00.203040+03:00"
         },
@@ -272,7 +290,13 @@ Example Response::
             "id": 4,
             "content": "entry_content4",
             "user": 1, /* This will return user information in the future. */
-            /* We should add topic information here in the future */
+            "topic": {
+                "id": 4,
+                "title": "topic_title4",
+                "user": 1,
+                "date_created": "2019-12-21T19:09:27.878108+03:00",
+                "date_updated": "2019-12-21T19:09:27.880234+03:00"
+            },
             "date_created": "2019-12-21T23:42:26.678723+03:00",
             "date_updated": "2019-12-21T23:42:26.680176+03:00"
         }
@@ -297,7 +321,13 @@ Example Response::
         "id": 4,
         "content": "entry_content",
         "user": 1, /* This will return user information in the future. */
-        /* We should add topic information here in the future */
+        "topic": {
+            "id": 4,
+            "title": "topic_title",
+            "user": 1, /* This will return user information in the future. */
+            "date_created": "2019-12-21T19:09:27.878108+03:00",
+            "date_updated": "2019-12-21T19:09:27.880234+03:00"
+        },
         "date_created": "2019-12-21T22:29:17.561338+03:00",
         "date_updated": "2019-12-21T22:29:17.562295+03:00"
     }
@@ -325,6 +355,13 @@ Example Response::
         "id": 4,
         "content": "edited_entry_content",
         "user": 1,
+        "topic": {
+            "id": 4,
+            "title": "topic_title",
+            "user": 1, /* This will return user information in the future. */
+            "date_created": "2019-12-21T19:09:27.878108+03:00",
+            "date_updated": "2019-12-21T19:09:27.880234+03:00"
+        },
         "date_created": "2019-12-21T22:29:17.561338+03:00",
         "date_updated": "2019-12-21T23:49:24.220481+03:00"
     }
