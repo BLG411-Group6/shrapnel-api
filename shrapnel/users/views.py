@@ -44,3 +44,12 @@ class LogoutView(APIView):
     def get(self, request, *args, **kwargs):
         logout(request)
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class HelloView(APIView):
+    """
+    This view will be used to get CSRF token.
+    """
+
+    def get(self, request, *args, **kwargs):
+        return Response(status=status.HTTP_204_NO_CONTENT)
