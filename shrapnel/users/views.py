@@ -1,3 +1,41 @@
-from django.shortcuts import render
+from django.contrib.auth import authenticate, login, logout
+from rest_framework import status
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.exceptions import AuthenticationFailed
+from rest_framework.generics import GenericAPIView
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-# Create your views here.
+from .models import User
+from .serializers import LoginSerializer
+
+
+class LoginView(GenericAPIView):
+    queryset = User.objects.all()
+    permission_classes = [AllowAny]
+    authentication_classes = [SessionAuthentication]
+    serializer_class = LoginSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        username = serializer.validated_data.get('username')
+        password = serializer.validated_data.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is None:
+            raise AuthenticationFailed
+
+        login(request, user)
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class LogoutView(APIView):
+
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return Response(status=status.HTTP_204_NO_CONTENT)
