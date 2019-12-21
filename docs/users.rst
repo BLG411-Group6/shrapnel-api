@@ -8,7 +8,7 @@ Example Request::
 
     POST /api/users/register/
     {
-        "email": "testuser"shrapnel.com',
+        "email": "testuser@shrapnel.com',
         "username": "testusername",
         "first_name": "Test",
         "last_name": "User",
