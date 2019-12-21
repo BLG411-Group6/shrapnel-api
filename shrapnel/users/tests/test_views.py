@@ -21,7 +21,7 @@ class LoginViewTests(TestCase):
         response = self.client.post(self.url, data=payload)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
-    def test_unsucessful_login(self):
+    def test_unsuccessful_login(self):
         payload = {'username': self.username, 'password': 'wrongpassword'}
         response = self.client.post(self.url, data=payload)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
