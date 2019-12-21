@@ -1,4 +1,4 @@
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListCreateAPIView, ListAPIView, RetrieveUpdateDestroyAPIView
 
 from shrapnel.topics.serializers import TopicSerializer, EntrySerializer
 from shrapnel.topics.models import Topic, Entry
@@ -22,6 +22,14 @@ class TopicDetailView(RetrieveUpdateDestroyAPIView):
 
 
 class TopicEntriesView(TopicResourceMixin, ListCreateAPIView):
+    permission_classes = []  # TODO: configure permissions.
+    serializer_class = EntrySerializer
+
+    def get_queryset(self):
+        return filter_queryset_by_keywords(request=self.request, queryset=Entry.objects.filter(is_deleted=False), field="content")
+
+
+class EntriesView(ListAPIView):
     permission_classes = []  # TODO: configure permissions.
     serializer_class = EntrySerializer
 
