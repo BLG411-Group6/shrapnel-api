@@ -24,4 +24,4 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     def __str__(self):
-        return f"User: {self.username}"
+        return f"{self.username}"
