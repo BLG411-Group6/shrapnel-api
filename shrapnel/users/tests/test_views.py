@@ -25,7 +25,6 @@ class LoginViewTests(TestCase):
         payload = {'username': self.username, 'password': 'wrongpassword'}
         response = self.client.post(self.url, data=payload)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-        import pdb; pdb.set_trace()
 
 
 class LogoutViewTests(TestCase):
