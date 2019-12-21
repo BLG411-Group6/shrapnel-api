@@ -10,13 +10,15 @@ from shrapnel.topics.models import Entry
 class EntrySerializer(serializers.ModelSerializer):
     class Meta:
         model = Entry
-        fields = (
+        fields = [
+            "id",
             "content",
             "topic",
             "user",
             "date_created",
             "date_updated"
-        )
+        ]
+        read_only_fields = ["date_created", "date_updated"]
 
 
 class TopicSerializer(serializers.ModelSerializer):
@@ -25,12 +27,14 @@ class TopicSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Topic
-        fields = (
+        fields = [
+            "id",
             "title",
             "user",
+            "entries"
             "date_created",
             "date_updated",
-            "entries"
-        )
+        ]
+        read_only_fields = ["date_created", "date_updated"]
 
-    # TODO: Set user to request.user and make user field read only.
+    # TODO: Set user to request.user while creating and make user field read only.
