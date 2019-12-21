@@ -15,3 +15,5 @@ class TopicSerializer(serializers.ModelSerializer):
             "date_created",
             "date_updated"
         )
+
+    # TODO: Set user to request.user and make user field read only.
