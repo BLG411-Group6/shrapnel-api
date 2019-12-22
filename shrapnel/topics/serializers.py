@@ -2,8 +2,7 @@ from drf_extra_fields.relations import PresentablePrimaryKeyRelatedField
 
 from rest_framework import serializers
 
-from shrapnel.topics.models import Topic
-from shrapnel.topics.models import Entry
+from shrapnel.topics.models import Topic, Entry
 from shrapnel.users.serializers import UserSerializer
 
 
