@@ -28,7 +28,6 @@ SECRET_KEY = 'yo94^370po90vo-eq5lx1n$-j3zmfuc8-m2h%+5y@x&a4g&-9f'
 DEBUG = False
 
 ALLOWED_HOSTS = []
-CORS_ORIGIN_ALLOW_ALL = True
 
 # Authentication and authorization model
 AUTH_USER_MODEL = "users.User"
