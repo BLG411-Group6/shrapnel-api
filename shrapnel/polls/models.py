@@ -1,5 +1,6 @@
-from django.db import models
+from django.db import models, IntegrityError
 from django.utils import timezone
+from rest_framework.exceptions import ValidationError
 
 
 class Poll(models.Model):
@@ -46,3 +47,10 @@ class PollAnswer(models.Model):
 
     def __str__(self):
         return f"PollAnswer: by {self.user.username}, Poll: \"{self.poll.title}\""
+
+    def save(self, *args, **kwargs):
+        self.clean()
+        try:
+            super().save(*args, **kwargs)
+        except IntegrityError:
+            raise ValidationError("You have already voted.")
