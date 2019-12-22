@@ -1,8 +1,26 @@
+Hello View
+------
+This method will be used to get CSRF Token.
+
+Method: **GET**
+
+Endpoint: **/api/users/hello/**
+
+Example Request::
+
+    GET /api/users/hello/
+
+Example Response::
+
+    HTTP 204 NO CONTENT
+
+
+
 Registration
 ------------
 Method: **POST**
 
-Endpoint: **/api/users/register**
+Endpoint: **/api/users/register/**
 
 Example Request::
 
@@ -32,7 +50,7 @@ Login
 -----
 Method: **POST**
 
-Endpoint: **/api/users/login**
+Endpoint: **/api/users/login/**
 
 Example Request::
 
@@ -51,7 +69,7 @@ Logout
 ------
 Method: **GET**
 
-Endpoint: **/api/users/logout**
+Endpoint: **/api/users/logout/**
 
 Example Request::
 

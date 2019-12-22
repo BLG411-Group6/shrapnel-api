@@ -9,8 +9,7 @@ Example Request::
 
     POST /api/topics/
     {
-        "title": "topic_title",
-        "user": 1 /* This will be removed in the future, user will be authenticated user automatically. */
+        "title": "topic_title"
     }
 
 Example Response::
@@ -19,7 +18,10 @@ Example Response::
     {
         "id": 9,
         "title": "topic_title",
-        "user": 1, /* This will return user information in the future. */
+        "user": {
+            "id": 1,
+            "username": "my_username"
+        },
         "entries": [],
         "date_created": "2019-12-21T23:27:17.895665+03:00",
         "date_updated": "2019-12-21T23:27:17.897780+03:00"
@@ -48,19 +50,28 @@ Example Response::
         {
             "id": 1,
             "title": "topic_title1",
-            "user": 1, /* This will return user information in the future. */
+            "user": {
+                "id": 1,
+                "username": "my_username"
+            },
             "entries": [
                 {
                     "id": 1,
                     "content": "entry_content1",
-                    "user": 1, /* This will return user information in the future. */
+                    "user": {
+                        "id": 1,
+                        "username": "my_username"
+                    },
                     "date_created": "2019-12-21T22:30:52.638672+03:00",
                     "date_updated": "2019-12-21T23:15:07.427046+03:00"
                 },
                 {
                     "id": 2,
                     "content": "entry_content2",
-                    "user": 2, /* This will return user information in the future. */
+                    "user": {
+                        "id": 2,
+                        "username": "my_username"
+                    },
                     "date_created": "2019-12-21T22:30:52.638672+03:00",
                     "date_updated": "2019-12-21T23:15:07.427046+03:00"
                 }
@@ -71,12 +82,18 @@ Example Response::
         {
             "id": 2,
             "title": "topic_title2",
-            "user": 1, /* This will return user information in the future. */
+            "user": {
+                "id": 1,
+                "username": "my_username"
+            },
             "entries": [
                 {
                     "id": 3,
                     "content": "entry_content3",
-                    "user": 2, /* This will return user information in the future. */
+                    "user": {
+                        "id": 3,
+                        "username": "my_username"
+                    },
                     "date_created": "2019-12-21T22:30:52.638672+03:00",
                     "date_updated": "2019-12-21T23:15:07.427046+03:00"
                 }
@@ -104,7 +121,10 @@ Example Response::
     {
         "id": 9,
         "title": "topic_title",
-        "user": 1, /* This will return user information in the future. */
+        "user": {
+            "id": 3,
+            "username": "my_username"
+        },
         "entries": [],
         "date_created": "2019-12-21T23:27:17.895665+03:00",
         "date_updated": "2019-12-21T23:27:17.897780+03:00"
@@ -122,8 +142,7 @@ Example Request::
 
     PATCH /api/topics/9/
     {
-        "title": "edited_topic_title",
-        "user": 1 /* This will be removed in the future. */
+        "title": "edited_topic_title"
     }
 
 Example Response::
@@ -132,7 +151,10 @@ Example Response::
     {
         "id": 9,
         "title": "edited_topic_title",
-        "user": 1, /* This will return user information in the future. */
+        "user": {
+            "id": 3,
+            "username": "my_username"
+        },
         "entries": [],
         "date_created": "2019-12-21T23:27:17.895665+03:00",
         "date_updated": "2019-12-21T23:34:36.403716+03:00"
@@ -177,21 +199,30 @@ Example Response::
         {
             "id": 1,
             "content": "entry_content1",
-            "user": 1, /* This will return user information in the future. */
+            "user": {
+                "id": 1,
+                "username": "my_username"
+            },
             "date_created": "2019-12-21T22:29:17.561338+03:00",
             "date_updated": "2019-12-21T22:29:17.562295+03:00"
         },
         {
             "id": 2,
             "content": "entry_content2",
-            "user": 2, /* This will return user information in the future. */
+            "user": {
+                "id": 2,
+                "username": "my_username"
+            },
             "date_created": "2019-12-21T22:30:52.638672+03:00",
             "date_updated": "2019-12-21T23:15:07.427046+03:00"
         },
         {
             "id": 3,
             "content": "entry_content3",
-            "user": 3, /* This will return user information in the future. */
+            "user": {
+                "id": 3,
+                "username": "my_username"
+            },
             "date_created": "2019-12-21T23:40:00.202038+03:00",
             "date_updated": "2019-12-21T23:40:00.203040+03:00"
         }
@@ -209,8 +240,7 @@ Example Request::
 
     POST /api/topics/9/entries/
     {
-        "content": "entry_content1",
-        "user": 1 /* This will be removed in the future, user will be authenticated user automatically. */
+        "content": "entry_content1"
     }
 
 Example Response::
@@ -219,7 +249,10 @@ Example Response::
     {
         "id": 7,
         "content": "entry_content",
-        "user": 1, /* This will return user information in the future. */
+        "user": {
+            "id": 1,
+            "username": "my_username"
+        },
         "date_created": "2019-12-21T23:42:26.678723+03:00",
         "date_updated": "2019-12-21T23:42:26.680176+03:00"
     }
@@ -247,7 +280,10 @@ Example Response::
         {
             "id": 1,
             "content": "entry_content1",
-            "user": 1, /* This will return user information in the future. */
+            "user": {
+                "id": 1,
+                "username": "my_username"
+            },
             "topic": {
                 "id": 1,
                 "title": "topic_title1",
@@ -261,7 +297,10 @@ Example Response::
         {
             "id": 2,
             "content": "entry_content2",
-            "user": 2, /* This will return user information in the future. */
+            "user": {
+                "id": 1,
+                "username": "my_username"
+            },
             "topic": {
                 "id": 2,
                 "title": "topic_title2",
@@ -275,7 +314,10 @@ Example Response::
         {
             "id": 3,
             "content": "entry_content3",
-            "user": 3, /* This will return user information in the future. */
+            "user": {
+                "id": 1,
+                "username": "my_username"
+            },
             "topic": {
                 "id": 3,
                 "title": "topic_title3",
@@ -289,7 +331,10 @@ Example Response::
         {
             "id": 4,
             "content": "entry_content4",
-            "user": 1, /* This will return user information in the future. */
+            "user": {
+                "id": 1,
+                "username": "my_username"
+            },
             "topic": {
                 "id": 4,
                 "title": "topic_title4",
@@ -320,11 +365,17 @@ Example Response::
     {
         "id": 4,
         "content": "entry_content",
-        "user": 1, /* This will return user information in the future. */
+        "user": {
+            "id": 1,
+            "username": "my_username"
+        },
         "topic": {
             "id": 4,
             "title": "topic_title",
-            "user": 1, /* This will return user information in the future. */
+            "user": {
+                "id": 1,
+                "username": "my_username"
+            },
             "date_created": "2019-12-21T19:09:27.878108+03:00",
             "date_updated": "2019-12-21T19:09:27.880234+03:00"
         },
@@ -344,8 +395,7 @@ Example Request::
 
     PATCH /api/entries/4/
     {
-        "content": "edited_entry_content",
-        "user": 1 /* This will be removed in the future. */
+        "content": "edited_entry_content"
     }
 
 Example Response::
@@ -354,11 +404,17 @@ Example Response::
     {
         "id": 4,
         "content": "edited_entry_content",
-        "user": 1,
+        "user": {
+            "id": 1,
+            "username": "my_username"
+        },
         "topic": {
             "id": 4,
             "title": "topic_title",
-            "user": 1, /* This will return user information in the future. */
+            "user": {
+                "id": 1,
+                "username": "my_username"
+            },
             "date_created": "2019-12-21T19:09:27.878108+03:00",
             "date_updated": "2019-12-21T19:09:27.880234+03:00"
         },

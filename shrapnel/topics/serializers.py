@@ -2,12 +2,13 @@ from drf_extra_fields.relations import PresentablePrimaryKeyRelatedField
 
 from rest_framework import serializers
 
-from shrapnel.topics.models import Topic
-from shrapnel.users.models import User
-from shrapnel.topics.models import Entry
+from shrapnel.topics.models import Topic, Entry
+from shrapnel.users.serializers import SimpleUserSerializer
 
 
 class SimpleEntrySerializer(serializers.ModelSerializer):
+    user = PresentablePrimaryKeyRelatedField(presentation_serializer=SimpleUserSerializer, read_only=True)
+
     class Meta:
         model = Entry
         fields = [
@@ -20,13 +21,13 @@ class SimpleEntrySerializer(serializers.ModelSerializer):
         read_only_fields = ["date_created", "date_updated"]
 
     def create(self, validated_data):
-        # TODO: Set user to request.user while creating and make user field read only.ss
+        validated_data["user"] = self.context["request"].user
         validated_data["topic"] = self.context["topic"]
         return super(SimpleEntrySerializer, self).create(validated_data)
 
 
 class TopicSerializer(serializers.ModelSerializer):
-    user = serializers.PrimaryKeyRelatedField(queryset=User.objects.filter(is_deleted=False), required=True)
+    user = PresentablePrimaryKeyRelatedField(presentation_serializer=SimpleUserSerializer, read_only=True)
     entries = PresentablePrimaryKeyRelatedField(presentation_serializer=SimpleEntrySerializer, many=True, read_only=True)
 
     class Meta:
@@ -41,11 +42,13 @@ class TopicSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ["date_created", "date_updated"]
 
-    # TODO: Set user to request.user while creating and make user field read only.
+    def create(self, validated_data):
+        validated_data["user"] = self.context["request"].user
+        return super(TopicSerializer, self).create(validated_data)
 
 
 class SimpleTopicSerializer(serializers.ModelSerializer):
-    user = serializers.PrimaryKeyRelatedField(queryset=User.objects.filter(is_deleted=False), required=True)
+    user = PresentablePrimaryKeyRelatedField(presentation_serializer=SimpleUserSerializer, read_only=True)
 
     class Meta:
         model = Topic
@@ -61,6 +64,7 @@ class SimpleTopicSerializer(serializers.ModelSerializer):
 
 class EntrySerializer(serializers.ModelSerializer):
     topic = PresentablePrimaryKeyRelatedField(presentation_serializer=SimpleTopicSerializer, read_only=True)
+    user = PresentablePrimaryKeyRelatedField(presentation_serializer=SimpleUserSerializer, read_only=True)
 
     class Meta:
         model = Entry
