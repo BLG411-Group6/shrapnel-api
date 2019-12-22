@@ -1,8 +1,5 @@
-import datetime
-
 from django.test import TestCase
 from django.urls import reverse
-from django.utils import timezone
 from rest_framework import status
 
 from shrapnel import settings
@@ -23,7 +20,6 @@ class PollsViewTests(TestCase):
                 {"body": "Option A"},
                 {"body": "Option B"}
             ],
-            "date_expiration": timezone.now() + datetime.timedelta(days=30),
         }
         response = self.client.post(self.url, data=payload)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -39,7 +35,6 @@ class PollsViewTests(TestCase):
         poll = Poll.objects.create(
             title="Test Poll",
             user=self.user,
-            date_expiration=timezone.now() + datetime.timedelta(days=30)
         )
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -58,7 +53,6 @@ class PollDetailsViewTests(TestCase):
         self.poll = Poll.objects.create(
             title="Test Poll",
             user=self.user,
-            date_expiration=timezone.now() + datetime.timedelta(days=30)
         )
         self.poll_option = PollOption.objects.create(
             body="Option A",
@@ -98,7 +92,6 @@ class PollOptionsViewTests(TestCase):
         self.poll = Poll.objects.create(
             title="Test Poll",
             user=self.user,
-            date_expiration=timezone.now() + datetime.timedelta(days=30)
         )
         self.url = reverse('polls:poll-options', args=[self.poll.id])
 
@@ -131,7 +124,6 @@ class PollAnswerViewTests(TestCase):
         self.poll = Poll.objects.create(
             title="Test Poll",
             user=self.user,
-            date_expiration=timezone.now() + datetime.timedelta(days=30)
         )
         self.poll_option_1 = PollOption.objects.create(
             body="Option 1",

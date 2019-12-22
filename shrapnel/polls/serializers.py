@@ -1,6 +1,10 @@
+import datetime
+from time import timezone
+
 from drf_writable_nested import WritableNestedModelSerializer
 from rest_framework import serializers
 
+from shrapnel import settings
 from ..users.serializers import SimpleUserSerializer
 from .models import Poll, PollOption, PollAnswer
 
@@ -41,7 +45,7 @@ class PollSerializer(WritableNestedModelSerializer):
             'date_created',
             'date_expiration'
         ]
-        read_only_fields = ['date_created']
+        read_only_fields = ['date_created', 'date_expiration']
 
     def create(self, validated_data):
         validated_data['user'] = self.context['request'].user

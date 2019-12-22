@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models, IntegrityError
 from django.utils import timezone
 from rest_framework.exceptions import ValidationError
@@ -16,6 +18,10 @@ class Poll(models.Model):
 
     def __str__(self):
         return f"Poll: {self.title}"
+
+    def save(self, *args, **kwargs):
+        self.date_expiration = timezone.now() + datetime.timedelta(days=30)
+        super().save(*args, **kwargs)
 
 
 class PollOption(models.Model):
