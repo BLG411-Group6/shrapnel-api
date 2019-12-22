@@ -2,13 +2,12 @@ from drf_extra_fields.relations import PresentablePrimaryKeyRelatedField
 
 from rest_framework import serializers
 
-from shrapnel.topics.models import Topic
-from shrapnel.topics.models import Entry
-from shrapnel.users.serializers import UserSerializer
+from shrapnel.topics.models import Topic, Entry
+from shrapnel.users.serializers import SimpleUserSerializer
 
 
 class SimpleEntrySerializer(serializers.ModelSerializer):
-    user = PresentablePrimaryKeyRelatedField(presentation_serializer=UserSerializer, read_only=True)
+    user = PresentablePrimaryKeyRelatedField(presentation_serializer=SimpleUserSerializer, read_only=True)
 
     class Meta:
         model = Entry
@@ -28,7 +27,7 @@ class SimpleEntrySerializer(serializers.ModelSerializer):
 
 
 class TopicSerializer(serializers.ModelSerializer):
-    user = PresentablePrimaryKeyRelatedField(presentation_serializer=UserSerializer, read_only=True)
+    user = PresentablePrimaryKeyRelatedField(presentation_serializer=SimpleUserSerializer, read_only=True)
     entries = PresentablePrimaryKeyRelatedField(presentation_serializer=SimpleEntrySerializer, many=True, read_only=True)
 
     class Meta:
@@ -49,7 +48,7 @@ class TopicSerializer(serializers.ModelSerializer):
 
 
 class SimpleTopicSerializer(serializers.ModelSerializer):
-    user = PresentablePrimaryKeyRelatedField(presentation_serializer=UserSerializer, read_only=True)
+    user = PresentablePrimaryKeyRelatedField(presentation_serializer=SimpleUserSerializer, read_only=True)
 
     class Meta:
         model = Topic
@@ -65,7 +64,7 @@ class SimpleTopicSerializer(serializers.ModelSerializer):
 
 class EntrySerializer(serializers.ModelSerializer):
     topic = PresentablePrimaryKeyRelatedField(presentation_serializer=SimpleTopicSerializer, read_only=True)
-    user = PresentablePrimaryKeyRelatedField(presentation_serializer=UserSerializer, read_only=True)
+    user = PresentablePrimaryKeyRelatedField(presentation_serializer=SimpleUserSerializer, read_only=True)
 
     class Meta:
         model = Entry

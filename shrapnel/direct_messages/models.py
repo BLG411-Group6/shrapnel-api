@@ -21,4 +21,6 @@ class DirectMessage(models.Model):
         verbose_name_plural = "DirectMessages"
 
     def __str__(self):
-        return f"Direct Message: from {self.sender.username} to {self.receiver.username}"
+        sender_username = self.sender.username if self.sender else "anonymous"
+        receiver_username = self.receiver.username if self.receiver else "anonymous"
+        return f"Direct Message: from {sender_username} to {receiver_username}"
