@@ -9,6 +9,16 @@ class LoginSerializer(serializers.Serializer):
     password = serializers.CharField(required=True, write_only=True)
 
 
+class SimpleUserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = (
+            'id',
+            'username'
+        )
+
+
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(required=True, write_only=True)
     repeated_password = serializers.CharField(required=True, write_only=True)
@@ -37,16 +47,10 @@ class UserSerializer(serializers.ModelSerializer):
         return data
 
     def create(self, validated_data):
+        raw_password = validated_data.pop('password')
         user = super(UserSerializer, self).create(validated_data)
-        user.set_password(user.password)
-        user.save()
+
+        user.set_password(raw_password)
+        user.save(update_fields=['password'])
+
         return user
-
-
-class SimpleUserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = (
-            'id',
-            'username',
-        )

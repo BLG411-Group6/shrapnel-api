@@ -69,7 +69,7 @@ class RegistrationViewTests(TestCase):
         }
         response = self.client.post(self.url, data=payload)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertEqual(response.data['username'][0], 'user with this username already exists.')
+        self.assertEqual(response.data['username'][0], 'User with this username already exists.')
 
 
 class LoginViewTests(TestCase):
