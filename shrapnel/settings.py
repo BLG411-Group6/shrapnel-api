@@ -51,9 +51,19 @@ INSTALLED_APPS = [
 
     # 3rd party modules
     'rest_framework',
+    'rest_framework.authtoken',
     'django_extensions',
     'corsheaders',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ),
+}
 
 CORS_ORIGIN_ALLOW_ALL = True
 
