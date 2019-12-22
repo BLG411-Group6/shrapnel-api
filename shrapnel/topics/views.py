@@ -28,7 +28,7 @@ class TopicEntriesView(TopicResourceMixin, ListCreateAPIView):
     serializer_class = SimpleEntrySerializer
 
     def get_queryset(self):
-        return filter_queryset_by_keywords(request=self.request, queryset=Entry.objects.filter(is_deleted=False), field="content")
+        return filter_queryset_by_keywords(request=self.request, queryset=Entry.objects.filter(is_deleted=False, topic=self.topic), field="content")
 
 
 class EntriesView(ListAPIView):

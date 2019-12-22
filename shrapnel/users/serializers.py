@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
+from rest_framework.authtoken.models import Token
 
 from .models import User
 
@@ -47,10 +48,8 @@ class UserSerializer(serializers.ModelSerializer):
         return data
 
     def create(self, validated_data):
-        raw_password = validated_data.pop('password')
         user = super(UserSerializer, self).create(validated_data)
-
-        user.set_password(raw_password)
-        user.save(update_fields=['password'])
-
+        user.set_password(user.password)
+        user.save()
+        Token.objects.create(user=user)
         return user

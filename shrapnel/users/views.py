@@ -1,10 +1,11 @@
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate
 from rest_framework import status
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.generics import GenericAPIView, CreateAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.authtoken.models import Token
 
 from .models import User
 from .serializers import LoginSerializer, UserSerializer
@@ -32,16 +33,17 @@ class LoginView(GenericAPIView):
         if user is None:
             raise AuthenticationFailed
 
-        login(request, user)
+        data = dict()
+        token, created = Token.objects.get_or_create(user=user)
+        data["token"] = token.key
 
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(data, status=status.HTTP_200_OK)
 
 
 class LogoutView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
-        logout(request)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
