@@ -35,3 +35,12 @@ class UserSerializer(serializers.ModelSerializer):
             raise ValidationError({'password': 'Passwords you have entered do not match!'})
 
         return data
+
+    def create(self, validated_data):
+        raw_password = validated_data.pop('password')
+        user = super(UserSerializer, self).create(validated_data)
+
+        user.set_password(raw_password)
+        user.save(update_fields=['password'])
+
+        return user
